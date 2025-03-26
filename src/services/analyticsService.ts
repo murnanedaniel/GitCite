@@ -1,5 +1,4 @@
-// Placeholder for Google Analytics measurement ID
-// Replace with your actual GA measurement ID when available
+// Use the actual GA measurement ID from the 404 page
 const GA_MEASUREMENT_ID = 'G-T6RGHJZ92L'; 
 
 // Event types for tracking
@@ -12,37 +11,63 @@ export enum EventType {
 
 // Initialize Google Analytics
 export const initializeAnalytics = () => {
-  // Check if GA script is already loaded
-  if (document.getElementById('ga-script')) return;
+  try {
+    // Check if GA script is already loaded
+    if (document.getElementById('ga-script')) {
+      console.log('Google Analytics script already loaded');
+      return;
+    }
 
-  // Load Google Analytics script
-  const script = document.createElement('script');
-  script.id = 'ga-script';
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
+    console.log('Initializing Google Analytics with ID:', GA_MEASUREMENT_ID);
+    
+    // Load Google Analytics script
+    const script = document.createElement('script');
+    script.id = 'ga-script';
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(script);
 
-  // Initialize gtag
-  window.dataLayer = window.dataLayer || [];
-  function gtag(...args: any[]) {
-    window.dataLayer.push(args);
+    // Initialize gtag
+    window.dataLayer = window.dataLayer || [];
+    
+    // Define gtag function as a property of window
+    window.gtag = function(...args: any[]) {
+      window.dataLayer.push(arguments);
+      console.log('GA Event:', args);
+    };
+    
+    window.gtag('js', new Date());
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      send_page_view: true,
+      cookie_domain: 'gitcite.com',
+      cookie_flags: 'SameSite=None;Secure'
+    });
+    
+    console.log('Google Analytics initialized successfully');
+  } catch (error) {
+    console.error('Failed to initialize Google Analytics:', error);
   }
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID);
-
-  // Add to window
-  window.gtag = gtag;
 };
 
 // Track page view
 export const trackPageView = (title?: string, path?: string) => {
-  if (!window.gtag) return;
-  
-  window.gtag('event', 'page_view', {
-    page_title: title || document.title,
-    page_location: path || window.location.href,
-    page_path: path || window.location.pathname
-  });
+  try {
+    if (!window.gtag) {
+      console.warn('Google Analytics not initialized, cannot track page view');
+      return;
+    }
+    
+    const pageData = {
+      page_title: title || document.title,
+      page_location: path || window.location.href,
+      page_path: path || window.location.pathname
+    };
+    
+    console.log('Tracking page view:', pageData);
+    window.gtag('event', 'page_view', pageData);
+  } catch (error) {
+    console.error('Failed to track page view:', error);
+  }
 };
 
 // Track event

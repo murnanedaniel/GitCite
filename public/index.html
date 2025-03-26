@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#4285f4" />
     
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T6RGHJZ92L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T6RGHJZ92L', {
+        cookie_domain: 'gitcite.com',
+        cookie_flags: 'SameSite=None;Secure'
+      });
+      console.log('Google Analytics loaded directly from HTML');
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>GitCite | BibTeX Citations for GitHub & GitLab</title>
     <meta name="title" content="GitCite | BibTeX Citations for GitHub & GitLab">
