@@ -1,26 +1,100 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import SearchBox from './components/SearchBox';
+import CitationResult from './components/CitationResult';
+import { fetchRepositoryData, generateCitation } from './services/repoService';
+import { Citation } from './types';
 
-function App() {
+const AppContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #f9fafb, #eef1f5);
+  padding: 2rem 1rem;
+`;
+
+const Header = styled.header`
+  margin-bottom: 3rem;
+  text-align: center;
+`;
+
+const Logo = styled.h1`
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  
+  span {
+    color: #4285f4;
+  }
+`;
+
+const Tagline = styled.p`
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+`;
+
+const ErrorMessage = styled.div`
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: center;
+`;
+
+const Footer = styled.footer`
+  margin-top: auto;
+  padding: 2rem 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+`;
+
+const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [citation, setCitation] = useState<Citation | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  
+  const handleSearch = async (url: string) => {
+    setIsLoading(true);
+    setError(null);
+    setCitation(null);
+    
+    try {
+      const repoData = await fetchRepositoryData(url);
+      const newCitation = generateCitation(repoData);
+      setCitation(newCitation);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Header>
+        <Logo>
+          Git<span>Cite</span>
+        </Logo>
+        <Tagline>Generate BibTeX citations for GitHub and GitLab repositories</Tagline>
+      </Header>
+      
+      <SearchBox onSearch={handleSearch} isLoading={isLoading} />
+      
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      
+      {citation && <CitationResult citation={citation} />}
+      
+      <Footer>
+        &copy; {new Date().getFullYear()} GitCite
+      </Footer>
+    </AppContainer>
   );
-}
+};
 
 export default App;

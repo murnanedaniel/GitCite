@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Murnane
+    given-names: Daniel
+title: "GitCite"
+version: 0.1.0
+date-released: 2025-03-26
+repository-code: "https://github.com/murnanedaniel/gitcite"
+license: MIT
+abstract: "A modern, fast React application that generates BibTeX citations for GitHub and GitLab repositories with a single click."
+keywords:
+  - citation
+  - bibtex
+  - github
+  - gitlab
+  - repository 

@@ -2,6 +2,8 @@
   "name": "gitcite",
   "version": "0.1.0",
   "private": true,
+  "description": "Generate BibTeX citations for GitHub and GitLab repositories",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -11,9 +13,13 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
+    "@types/styled-components": "^5.1.34",
+    "axios": "^1.8.4",
+    "clipboard-copy": "^4.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.16",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

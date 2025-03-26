@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+# GitCite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GitCite is a modern, fast React application that generates BibTeX citations for GitHub and GitLab repositories with a single click.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Fast Citation Generation**: Get BibTeX citations within seconds
+- **Support for GitHub and GitLab**: Works with both major Git hosting platforms
+- **Auto-completion**: Suggests repositories as you type
+- **Copy to Clipboard**: Easily copy generated citations with one click
+- **Clean, Modern UI**: Simple and intuitive interface
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/gitcite.git
+   cd gitcite
+   ```
 
-### `npm run build`
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the development server:
+   ```
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+1. Enter a GitHub or GitLab repository URL in the search box (e.g., `github.com/user/repo`)
+2. Alternatively, start typing a repository name and select from the auto-suggestions
+3. Click "Cite" to generate the BibTeX citation
+4. Copy the generated citation with the "Copy" button
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Building for Production
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To build the app for production:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm run build
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This creates a `build` folder with optimized production files.
 
-## Learn More
+## Technical Details
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+GitCite is built with:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React 18
+- TypeScript
+- styled-components for styling
+- axios for API requests
+
+The app uses the GitHub and GitLab APIs to fetch repository data and generate citations in BibTeX format.
+
+## License
+
+GitCite is open source software licensed under the [MIT license](LICENSE).
