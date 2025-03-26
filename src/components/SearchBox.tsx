@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { suggestRepositories } from '../services/repoService';
+import { trackSearch } from '../services/analyticsService';
 
 const SearchContainer = styled.div`
   width: 100%;
@@ -137,6 +138,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, isLoading }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue.trim()) {
+      trackSearch(inputValue);
       onSearch(inputValue);
     }
   };
@@ -144,6 +146,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, isLoading }) => {
   const handleSelectSuggestion = (suggestion: string) => {
     setInputValue(suggestion);
     setShowSuggestions(false);
+    
+    trackSearch(suggestion);
     onSearch(suggestion);
   };
   

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import copy from 'clipboard-copy';
 import { Citation } from '../types';
+import { trackCitationCopy } from '../services/analyticsService';
 
 const ResultContainer = styled.div`
   width: 100%;
@@ -90,6 +91,9 @@ const CitationResult: React.FC<CitationResultProps> = ({ citation }) => {
   const handleCopy = () => {
     copy(citation.bibtexString);
     setCopied(true);
+    
+    // Track copy event
+    trackCitationCopy(citation.title);
     
     setTimeout(() => {
       setCopied(false);

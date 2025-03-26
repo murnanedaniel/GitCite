@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Not Found - GitCite</title>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      text-align: center;
+      padding: 50px 20px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      font-weight: 800;
+      color: #111;
+    }
+    h1 span {
+      color: #0066ff;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #0066ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+    a:hover {
+      background-color: #0052cc;
+    }
+  </style>
+  <!-- Automatically redirect to homepage after 5 seconds -->
+  <meta http-equiv="refresh" content="5;url=https://gitcite.com">
+</head>
+<body>
+  <div class="container">
+    <h1>Git<span>Cite</span></h1>
+    <h2>Page Not Found</h2>
+    <p>The page you're looking for doesn't exist or has been moved.</p>
+    <p>You'll be redirected to the homepage in 5 seconds.</p>
+    <a href="https://gitcite.com">Go to Homepage</a>
+  </div>
+  <!-- Google Analytics script for tracking 404 errors -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-T6RGHJZ92L');
+    
+    // Track 404 error
+    gtag('event', 'page_not_found', {
+      'page_location': window.location.href,
+      'page_path': window.location.pathname
+    });
+  </script>
+</body>
+</html> 

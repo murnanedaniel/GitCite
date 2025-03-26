@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import SearchBox from './components/SearchBox';
 import CitationResult from './components/CitationResult';
 import { fetchRepositoryData, generateCitation } from './services/repoService';
 import { Citation } from './types';
+import { 
+  initializeAnalytics, 
+  trackPageView, 
+  trackCitationGeneration, 
+  trackError 
+} from './services/analyticsService';
 
 const AppContainer = styled.div`
   min-height: 100vh;
@@ -89,6 +95,15 @@ const App: React.FC = () => {
   const [citation, setCitation] = useState<Citation | null>(null);
   const [error, setError] = useState<string | null>(null);
   
+  // Initialize analytics when the app loads
+  useEffect(() => {
+    // Initialize Google Analytics
+    initializeAnalytics();
+    
+    // Track initial page view
+    trackPageView();
+  }, []);
+  
   const handleSearch = async (url: string) => {
     setIsLoading(true);
     setError(null);
@@ -98,8 +113,15 @@ const App: React.FC = () => {
       const repoData = await fetchRepositoryData(url);
       const newCitation = generateCitation(repoData);
       setCitation(newCitation);
+      
+      // Track successful citation generation
+      trackCitationGeneration(url, true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+      setError(errorMessage);
+      
+      // Track error
+      trackError(errorMessage, 'fetch_repository');
     } finally {
       setIsLoading(false);
     }
