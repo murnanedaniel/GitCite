@@ -4,25 +4,35 @@ import { suggestRepositories } from '../services/repoService';
 
 const SearchContainer = styled.div`
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   position: relative;
 `;
 
 const InputWrapper = styled.div`
   display: flex;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  transition: all 0.2s ease;
+  
+  &:focus-within {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 25px -5px;
+    border-color: rgba(0, 0, 0, 0.15);
+  }
 `;
 
 const SearchInput = styled.input`
   flex: 1;
-  padding: 16px 20px;
-  font-size: 16px;
+  padding: 20px 24px;
+  font-size: 18px;
   border: none;
   outline: none;
   font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #333;
   
   &::placeholder {
     color: #aaa;
@@ -30,20 +40,21 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  background: #4285f4;
+  background: #0066ff;
   color: white;
-  padding: 0 24px;
+  padding: 0 32px;
   border: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.2s;
   
   &:hover {
-    background: #3367d6;
+    background: #0052cc;
   }
   
   &:disabled {
-    background: #aaa;
+    background: #cccccc;
     cursor: not-allowed;
   }
 `;
@@ -53,23 +64,25 @@ const SuggestionsList = styled.ul`
   top: 100%;
   left: 0;
   right: 0;
-  margin: 4px 0 0;
-  padding: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 8px 0 0;
+  padding: 8px 0;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 25px -5px;
   background: white;
   list-style: none;
   z-index: 10;
-  max-height: 200px;
+  max-height: 240px;
   overflow-y: auto;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
 const SuggestionItem = styled.li`
-  padding: 12px 16px;
+  padding: 12px 24px;
   cursor: pointer;
+  font-size: 16px;
   
   &:hover {
-    background: #f1f3f4;
+    background: #f5f7fa;
   }
 `;
 
@@ -140,7 +153,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch, isLoading }) => {
         <InputWrapper>
           <SearchInput
             type="text"
-            placeholder="Enter GitHub or GitLab repository URL (e.g., github.com/user/repo)"
+            placeholder="Enter GitHub or GitLab repository URL"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}

@@ -5,73 +5,79 @@ import { Citation } from '../types';
 
 const ResultContainer = styled.div`
   width: 100%;
-  max-width: 600px;
-  margin-top: 2rem;
+  max-width: 700px;
+  margin-top: 3rem;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  transition: all 0.2s ease;
 `;
 
 const ResultHeader = styled.div`
-  padding: 20px;
-  background: #f8f9fa;
-  border-bottom: 1px solid #eee;
+  padding: 24px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
 `;
 
 const Title = styled.h3`
   margin: 0;
-  color: #333;
-  font-weight: 500;
+  color: #111;
+  font-weight: 600;
+  font-size: 20px;
 `;
 
 const SubTitle = styled.div`
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 14px;
   color: #666;
 `;
 
 const CodeBlock = styled.div`
   position: relative;
-  padding: 20px;
-  background: #f6f8fa;
-  border-radius: 4px;
-  margin: 20px;
+  padding: 24px;
+  background: #fcfcfc;
+  border-radius: 8px;
+  margin: 24px;
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
-  color: #24292e;
+  color: #333;
 `;
 
 const CopyButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #f1f3f4;
-  border: none;
-  border-radius: 4px;
-  padding: 6px 12px;
+  top: 12px;
+  right: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 8px 12px;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
   
   &:hover {
-    background: #e8eaed;
+    background: #f1f3f5;
+    border-color: #d0d7de;
   }
 `;
 
 const CopyMessage = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #4caf50;
+  top: 12px;
+  right: 12px;
+  background: #0066ff;
   color: white;
-  border-radius: 4px;
-  padding: 6px 12px;
+  border-radius: 6px;
+  padding: 8px 12px;
   font-size: 12px;
+  font-weight: 500;
 `;
 
 interface CitationResultProps {

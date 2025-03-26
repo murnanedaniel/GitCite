@@ -10,30 +10,33 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to bottom, #f9fafb, #eef1f5);
-  padding: 2rem 1rem;
+  background: #ffffff;
+  padding: 3rem 1rem;
 `;
 
 const Header = styled.header`
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   text-align: center;
 `;
 
 const Logo = styled.h1`
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 3.5rem;
+  color: #111;
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.05em;
   
   span {
-    color: #4285f4;
+    color: #0066ff;
   }
 `;
 
 const Tagline = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #666;
   margin: 0;
+  font-weight: 400;
 `;
 
 const ErrorMessage = styled.div`
@@ -41,8 +44,8 @@ const ErrorMessage = styled.div`
   padding: 1rem;
   background: #ffebee;
   color: #c62828;
-  border-radius: 8px;
-  max-width: 600px;
+  border-radius: 12px;
+  max-width: 700px;
   text-align: center;
 `;
 
@@ -50,8 +53,8 @@ const Footer = styled.footer`
   margin-top: auto;
   padding: 2rem 0;
   text-align: center;
-  color: #666;
-  font-size: 0.9rem;
+  color: #888;
+  font-size: 0.85rem;
 `;
 
 const App: React.FC = () => {
@@ -91,7 +94,7 @@ const App: React.FC = () => {
       {citation && <CitationResult citation={citation} />}
       
       <Footer>
-        &copy; {new Date().getFullYear()} GitCite
+        &copy; {2025} Daniel Murnane
       </Footer>
     </AppContainer>
   );
