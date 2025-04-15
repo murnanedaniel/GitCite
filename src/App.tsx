@@ -25,6 +25,19 @@ const Header = styled.header`
   text-align: center;
 `;
 
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+`;
+
+const LogoIcon = styled.img`
+  width: 64px;
+  height: 64px;
+  margin-right: 16px;
+`;
+
 const Logo = styled.h1`
   font-size: 3.5rem;
   color: #111;
@@ -130,9 +143,12 @@ const App: React.FC = () => {
   return (
     <AppContainer>
       <Header>
-        <Logo>
-          Git<span>Cite</span>
-        </Logo>
+        <LogoContainer>
+          <LogoIcon src="/logo192.png" alt="GitCite Logo" />
+          <Logo>
+            Git<span>Cite</span>
+          </Logo>
+        </LogoContainer>
         <Tagline>Generate BibTeX citations for GitHub and GitLab repositories</Tagline>
       </Header>
       
