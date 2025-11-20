@@ -144,7 +144,7 @@ const App: React.FC = () => {
     <AppContainer>
       <Header>
         <LogoContainer>
-          <LogoIcon src="/logo192.png" alt="GitCite Logo" />
+          <LogoIcon src={`${process.env.PUBLIC_URL}/logo192.png`} alt="GitCite Logo" />
           <Logo>
             Git<span>Cite</span>
           </Logo>
